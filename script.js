@@ -1,30 +1,11 @@
-const mario = document.querySelector('.mario');
-const pipe = document.querySelector('.pipe');
-
-const jump = () => {
- mario.classList.add('jump');
-
-
-setTimeout(() => {
-    mario.classList.remove('jump');
-
-} , 500);
-
+function updateTime() {
+    const timeElement = document.getElementById('time');
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+    const timeString = `${hours}:${minutes}:${seconds}`;
+    timeElement.textContent = timeString;
 }
 
-const loop = setInterval(() => {
-
-    const pipePosition = pipe.offsetLeft; 
-    
- 
-   if (pipePosition <= 120) {
-
- pipe.style.animation = "none";
- pipe.style.left = '${pipePosition}px';
-
-}
-
-
-}, 10);
-
-document.addEventListener('keydown', jump);
+setInterval(updateTime, 1000);
